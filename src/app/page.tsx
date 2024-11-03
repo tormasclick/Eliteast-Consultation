@@ -1,101 +1,109 @@
-import Image from "next/image";
+// src/app/page.tsx
+import { fetchPageById } from '@/utils/fetchPageById';
 
-export default function Home() {
+export default async function HomePage() {
+  const pageId1 = 7; // First page ID
+  const pageData1 = await fetchPageById(pageId1);
+
+  // Handle case where pageData1 is null or invalid
+  if (!pageData1) {
+    return <div className="text-red-500">Error fetching first page data.</div>;
+  }
+
+  console.log('First Page Data:', pageData1); // Log the first page data for debugging
+
+  // Fetch the second page data with ID 13
+  const pageId2 = 13; // Second page ID
+  const pageData2 = await fetchPageById(pageId2);
+
+  // Handle case where pageData2 is null or invalid
+  if (!pageData2) {
+    return <div className="text-red-500">Error fetching second page data.</div>;
+  }
+
+  console.log('Second Page Data:', pageData2); // Log the second page data for debugging
+
+  // Fetch the third page data with ID 10
+  const pageId3 = 10; // Third page ID
+  const pageData3 = await fetchPageById(pageId3);
+
+  // Handle case where pageData3 is null or invalid
+  if (!pageData3) {
+    return <div className="text-red-500">Error fetching third page data.</div>;
+  }
+
+  console.log('Third Page Data:', pageData3); // Log the third page data for debugging
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="container mx-auto p-4">
+      {/* First Page Content */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Column 1: Page Content */}
+        <div className="bg-white p-6 slide-in-left">
+          <h1 className="text-3xl font-bold mb-6">{pageData1.title}</h1>
+          <div className="prose">
+            <div dangerouslySetInnerHTML={{ __html: pageData1.content }} />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Column 2: Featured Image (Only from pageData1) */}
+        {pageData1.featuredImage ? (
+          <div className="bg-white p-6 slide-in-right">
+            <img 
+              src={pageData1.featuredImage} 
+              alt="Featured" 
+              className="rounded-lg w-full h-auto object-cover" 
+            />
+          </div>
+        ) : (
+          <div className="bg-white p-6 flex items-center justify-center slide-in-right">
+            <p className="text-gray-500">No featured image available</p>
+          </div>
+        )}
+      </div>
+
+      {/* Second Page Data */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+        {Array.isArray(pageData2.divs) && pageData2.divs.length > 0 ? (
+          pageData2.divs.map((div, index) => (
+            <div key={index} className="bg-white p-6">
+              <div className="text-gray-700">
+                <div dangerouslySetInnerHTML={{ __html: div.content }} />
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="col-span-3 text-center text-gray-500">
+            No content available for this section.
+          </div>
+        )}
+      </div>
+
+      {/* Third Page Content */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+        {/* Column 1: Featured Image (Only from pageData3) */}
+        {pageData3.featuredImage ? (
+          <div className="bg-white p-6 slide-in-left">
+            <img 
+              src={pageData3.featuredImage} 
+              alt="Featured" 
+              className="rounded-lg w-full h-auto object-cover" 
+            />
+          </div>
+        ) : (
+          <div className="bg-white p-6 flex items-center justify-center slide-in-left">
+            <p className="text-gray-500">No featured image available</p>
+          </div>
+        )}
+
+        {/* Column 2: Page Content */}
+        <div className="bg-white p-6 slide-in-right">
+          <h1 className="text-3xl font-bold mb-6">{pageData3.title}</h1>
+          <div className="prose">
+            <div dangerouslySetInnerHTML={{ __html: pageData3.content }} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

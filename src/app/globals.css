@@ -14,8 +14,119 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+html, body {
+  @apply text-foreground bg-background overflow-x-hidden;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Extra safeguard */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold;
+}
+
+p {
+  @apply leading-relaxed;
+}
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+/* Confining Retro Grid Background Animation */
+.grid-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;  /* Ensure it fits the container */
+  height: 100%;
+  background: radial-gradient(circle, transparent 20%, rgba(255, 255, 255, 0.1) 21%, transparent 22%), 
+              linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), 
+              linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 15% 15%, 15% 15%, 15% 15%;
+  transform: perspective(500px) rotateX(60deg);
+  animation: moveGrid 10s linear infinite;
+  box-sizing: border-box;
+}
+
+/* Fade-in effect for Hero text */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes moveGrid {
+  0% {
+    background-position: 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 100px 100px, 100px 100px, 100px 100px;
+  }
+}
+
+.grid-overlay {
+  background: linear-gradient(white 1px, transparent 1px),
+              linear-gradient(90deg, white 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+/* Adding black transparent background for text */
+.hero-text-container {
+  background-color: rgba(0, 0, 0, 0.6); /* Black transparent */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-on-load {
+  animation: spin 1s ease-in-out forwards; /* Spin on load */
+}
+
+.spin-on-hover:hover {
+  animation: spin 1s ease-in-out infinite; /* Spin on hover */
+}
+
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-left {
+  animation: slide-in-left 0.5s ease-out forwards; /* Slide in from left */
+}
+
+.slide-in-right {
+  animation: slide-in-right 0.5s ease-out forwards; /* Slide in from right */
 }
