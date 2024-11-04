@@ -2,9 +2,15 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["eliteast.tormasclick.co.ke"], // Add allowed image domains here
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "eliteast.tormasclick.co.ke",
+        pathname: "/**", // This allows all images from the domain; adjust if needed
+      },
+    ],
   },
-  // You can add other configuration options here
+  // Other configuration options
 };
 
 export default nextConfig;
