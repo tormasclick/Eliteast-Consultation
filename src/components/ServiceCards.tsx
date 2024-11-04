@@ -1,5 +1,6 @@
 // src/components/ServiceCards.tsx
 import React from 'react';
+import Image from 'next/image';
 
 const services = [
   {
@@ -51,10 +52,12 @@ const ServiceCards: React.FC = () => {
               key={index}
               className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105"
             >
-              <img
+              <Image
                 src={service.icon}
                 alt={service.title}
-                className="w-16 h-16 mb-4"
+                width={64} // Width of the image
+                height={64} // Height of the image
+                className="mb-4"
               />
               <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
               <p className="text-gray-600">{service.description}</p>

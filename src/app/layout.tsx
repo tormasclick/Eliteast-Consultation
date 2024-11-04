@@ -1,9 +1,10 @@
+// app/layout.tsx
+
 import type { Metadata } from "next";
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Hero from '@/components/Hero'; // Import the Hero component
-import { FaHome, FaUser, FaEnvelope } from 'react-icons/fa'; // Import the icons you want to use
+import Hero from '@/components/Hero';
 import ServiceCards from '@/components/ServiceCards';
 
 export const metadata: Metadata = {
@@ -26,7 +27,7 @@ export default function RootLayout({
       </head>
       <body style={{ fontFamily: 'Open Sans, sans-serif' }}>
         <Header />
-        <Hero /> {/* Add the Hero component here */}
+        <Hero /> 
         <main>{children}</main>
         <ServiceCards />
         <Footer />

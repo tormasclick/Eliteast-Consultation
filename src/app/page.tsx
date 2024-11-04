@@ -1,44 +1,39 @@
 // src/app/page.tsx
 import { fetchPageById } from '@/utils/fetchPageById';
+import Image from 'next/image'; // Import Image component from Next.js
 
 export default async function HomePage() {
   const pageId1 = 7; // First page ID
   const pageData1 = await fetchPageById(pageId1);
 
-  // Handle case where pageData1 is null or invalid
   if (!pageData1) {
     return <div className="text-red-500">Error fetching first page data.</div>;
   }
 
-  console.log('First Page Data:', pageData1); // Log the first page data for debugging
+  console.log('First Page Data:', pageData1);
 
-  // Fetch the second page data with ID 13
   const pageId2 = 13; // Second page ID
   const pageData2 = await fetchPageById(pageId2);
 
-  // Handle case where pageData2 is null or invalid
   if (!pageData2) {
     return <div className="text-red-500">Error fetching second page data.</div>;
   }
 
-  console.log('Second Page Data:', pageData2); // Log the second page data for debugging
+  console.log('Second Page Data:', pageData2);
 
-  // Fetch the third page data with ID 10
   const pageId3 = 10; // Third page ID
   const pageData3 = await fetchPageById(pageId3);
 
-  // Handle case where pageData3 is null or invalid
   if (!pageData3) {
     return <div className="text-red-500">Error fetching third page data.</div>;
   }
 
-  console.log('Third Page Data:', pageData3); // Log the third page data for debugging
+  console.log('Third Page Data:', pageData3);
 
   return (
     <div className="container mx-auto p-4">
       {/* First Page Content */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Column 1: Page Content */}
         <div className="bg-white p-6 slide-in-left">
           <h1 className="text-3xl font-bold mb-6">{pageData1.title}</h1>
           <div className="prose">
@@ -46,13 +41,15 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Column 2: Featured Image (Only from pageData1) */}
+        {/* Column 2: Featured Image */}
         {pageData1.featuredImage ? (
           <div className="bg-white p-6 slide-in-right">
-            <img 
-              src={pageData1.featuredImage} 
-              alt="Featured" 
-              className="rounded-lg w-full h-auto object-cover" 
+            <Image
+              src={pageData1.featuredImage}
+              alt="Featured"
+              width={600} // Adjust width as necessary
+              height={400} // Adjust height as necessary
+              className="rounded-lg w-full h-auto object-cover"
             />
           </div>
         ) : (
@@ -81,13 +78,15 @@ export default async function HomePage() {
 
       {/* Third Page Content */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-        {/* Column 1: Featured Image (Only from pageData3) */}
+        {/* Column 1: Featured Image */}
         {pageData3.featuredImage ? (
           <div className="bg-white p-6 slide-in-left">
-            <img 
-              src={pageData3.featuredImage} 
-              alt="Featured" 
-              className="rounded-lg w-full h-auto object-cover" 
+            <Image
+              src={pageData3.featuredImage}
+              alt="Featured"
+              width={600} // Adjust width as necessary
+              height={400} // Adjust height as necessary
+              className="rounded-lg w-full h-auto object-cover"
             />
           </div>
         ) : (
