@@ -29,7 +29,7 @@ const Header = () => {
         <div 
           className="md:hidden cursor-pointer" 
           onClick={toggleMenu} 
-          tabIndex="0" // Make it keyboard accessible
+          tabIndex={0} // Make it keyboard accessible
           onKeyPress={(e) => e.key === 'Enter' && toggleMenu()} // Toggle on Enter key press
           role="button"
           aria-label="Toggle menu"
