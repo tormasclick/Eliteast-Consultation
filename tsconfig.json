@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ES2018", // Change this from ES2017 to ES2018
     "lib": [
       "dom",
       "dom.iterable",
@@ -12,16 +12,16 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node", // Ensure this is 'node'
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./src", // This sets the base URL to 'src'
+    "baseUrl": "./src",
     "paths": {
       "@/*": [
         "*"
-      ] // This allows '@' to point to the 'src' directory
+      ]
     },
     "plugins": [
       {
