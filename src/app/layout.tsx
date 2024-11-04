@@ -4,8 +4,6 @@ import type { Metadata } from "next";
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Hero from '@/components/Hero';
-import ServiceCards from '@/components/ServiceCards';
 
 export const metadata: Metadata = {
   title: 'Eliteast Consultation',
@@ -27,9 +25,7 @@ export default function RootLayout({
       </head>
       <body style={{ fontFamily: 'Open Sans, sans-serif' }}>
         <Header />
-        <Hero /> 
         <main>{children}</main>
-        <ServiceCards />
         <Footer />
       </body>
     </html>
