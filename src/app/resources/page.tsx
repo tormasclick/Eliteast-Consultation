@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image'; // Import Image if you need it
 
 const ResourcesPage: React.FC = () => {
   return (
@@ -21,7 +20,6 @@ const ResourcesPage: React.FC = () => {
       <div className="container mx-auto p-8">
         <div className="flex items-center justify-center h-96 bg-gray-100">
           <h1 className="text-4xl font-bold">Coming Soon!</h1>
-          
         </div>
       </div>
     </div>
