@@ -1,9 +1,12 @@
 // app/layout.tsx
 
 import type { Metadata } from "next";
+import { Open_Sans } from 'next/font/google'; // Importing the font
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+
+const openSans = Open_Sans({ subsets: ['latin'] }); // Set the font options
 
 export const metadata: Metadata = {
   title: 'Eliteast Consultation',
@@ -18,12 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
-          rel="stylesheet"
-        />
+        {/* No need to add the link here; the next/font package takes care of it */}
       </head>
-      <body style={{ fontFamily: 'Open Sans, sans-serif' }}>
+      <body className={openSans.className}> {/* Apply the font class here */}
         <Header />
         <main>{children}</main>
         <Footer />

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-const GetStartedPage: React.FC = () => {
+const IndustryPage: React.FC = () => {
   return (
     <div>
       {/* Title Bar Section with Background Image and Overlay */}
@@ -10,14 +10,13 @@ const GetStartedPage: React.FC = () => {
 
         <div className="relative z-10 text-white text-center px-4">
           <nav className="text-sm mb-2">
-            <Link href="/" className="text-gray-300 hover:text-white">Home</Link> / <span className="text-white">Get Started</span>
+            <Link href="/" className="text-gray-300 hover:text-white">Home</Link> / <span className="text-white">Industry</span>
           </nav>
 
-          <h1 className="text-4xl font-bold">Get Started</h1>
+          <h1 className="text-4xl font-bold">Industry</h1>
         </div>
       </div>
 
-      {/* Main Content Area */}
       <div className="container mx-auto p-8">
         <div className="flex items-center justify-center h-96 bg-gray-100">
           <h1 className="text-4xl font-bold">Coming Soon!</h1>
@@ -27,4 +26,4 @@ const GetStartedPage: React.FC = () => {
   );
 };
 
-export default GetStartedPage;
+export default IndustryPage;
